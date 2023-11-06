@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>철도박물관</title>
+
+    <meta name="keywords" content="철도, 기차, 기관차, 박물관, 철도박물관, Railway, railway" />
+    <meta name="description" content="겨레와 고락을 함께 해온 철도 역사가 살아 숨쉬고 있는 철도 문화의 전당 철도박물관" />
+    <meta name="author" content="my" />
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="철도박물관">
+    <meta property="og:description" content="철도박물관에 오신것을 환영합니다.">
+    <meta property="og:image" content="http://www.railroadmuseum.co.kr/img/og_image.png">
+
+    <link rel="icon" href="korail.png">
+    <link rel="apple-tocuch-icon" href="korail.png">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/main.css">
+
+    <script>
+        // notice
+        function tabMenu(tName){
+            $(tName+'> li > ul:gt(0)').hide()
+            $(tName+'> li > a').on('click',function(){
+                $(tName+' > li > a.on').removeClass('on')
+                $(this).addClass('on')
+                $(tName+ '> li > div').hide();
+                $(this).next('div').show();
+            })
+        }
+
+        $(document).ready(function(){
+
+            // gnb
+            var el = $('.gnb-wrap > ul > li > a');
+            el.on({
+                mouseenter:function(){
+                    $(this).css('color','f60')
+                    $('.subMenu').stop().slideDown();
+                    $('.gnb-wrap').css('border-bottom','1px solid #d8d8d8')
+                },
+                mouseleave:function(){
+                    $(this).css('color','#222')
+                    $('.subMenu').stop().slideUp();
+                    $('#gnb').css('border-bottom','1px solid none')
+                }
+            })
+
+            $('.subMenu').on({
+                mouseenter:function(){
+                    $('.subMenu').stop().slideDown();
+                },
+                mouseleave:function(){
+                    $('.subMenu').stop().slideUp();
+                }
+            })
+
+            // language
+            $('.lang-select').on('click',function(){
+                $(this).toggleClass('on')
+                $('.link-list').fadeToggle()
+            })
+            $('.link-list a').each(function(){
+                $(this).on('click',function(){
+                $(this).parents().find('.link-list').delay(800).fadeOut(500)
+                $(this).parents().find('.lang-select').removeClass('on')
+                })
+            })
+
+            // search
+            $('.search-icon').on('click',function(){
+                $('.search-tab').stop().slideDown();
+            })
+            $('.search-close').on('click',function(){
+                $(this).parents().find('.search-tab').slideUp();
+            })
+
+            // allMenu
+            $('.site-map').on('click',function(){
+                $('.all-menu').fadeIn('slow');
+            })
+            $('.close-menu-btn').on('click',function(){
+                $(this).parents().find('.all-menu').fadeOut();
+            })
+
+            // visual
+            $('.visualImg li:not(:eq(0))').hide();
+            var indexNum = 0;
+
+            $('.visual-btn li a').on({
+                click:function(){
+                    indexNum = $(this).parent().index();
+                    // $('.visualImg li').hide();
+                    $('.visualImg li').eq(indexNum).show();
+                    $('.visual-btn li a').removeClass('on')
+                    $(this).addClass('on')
+                }
+            })
+
+            $('.vPrev').on('click',function(e){
+                e.preventDefault
+                indexNum--;
+                if(indexNum < 0){
+                    indexNum = 2
+                }
+                $('.visual-btn li a').eq(indexNum).trigger('click')
+                visualAnimate(indexNum,'p')
+            })
+
+            $('.vNext').on('click',function(e){
+                e.preventDefault
+                indexNum++;
+                if(indexNum > 2){
+                    indexNum = 0
+                }
+                $('.visual-btn li a').eq(indexNum).trigger('click')
+                visualAnimate(indexNum,'n')
+            })
+
+            function visualAnimate(indexNum,dis){
+                $('.visual-btn li a').animate(indexNum)
+                if(dis == 'n'){
+                    $('.visualImg').animate({
+                        left:'-1200px'
+                    },200,function(){
+                        $('.visualImg').append($('.visualImg li:first'))
+                        $('.visualImg').css('left','0px')
+                    })
+                }else{
+                    $('.visualImg').prepend($('.visualImg li:last'))
+                    $('.visualImg').css('left','-1200px')
+                    $('.visualImg').animate({
+                        left:'0px'
+                    },200)
+                }
+            }
+
+            $('.banner-btn a').on('click',function(e){
+                e.preventDefault
+                if($(this).hasClass('pause')==true){
+                    clearInterval(st)
+                    $(this).removeClass('pause');
+                    $(this).addClass('play')
+                }else{
+                    st = setInterval(set,1000)
+                    $(this).removeClass('play')
+                    $(this).addClass('pause')
+                }
+            })
+
+            // function set(){
+            //     $('.vNext').trigger('click')
+            // }
+
+            // notice
+            tabMenu('.notice-list')
+
+            // popup
+            let num = 1;
+
+            $('.p-prev').on('click',function(e){
+                e.preventDefault
+                num--;
+                if(num < 1){
+                    num = 3
+                }
+                bannerAnimate(num,'P')
+            })
+            $('.p-next').on('click',function(e){
+                e.preventDefault
+                num++;
+                if(num > 3){
+                    num = 1
+                }
+                bannerAnimate(num,'N')
+            })
+
+            function bannerAnimate(num,dis){
+                $('.count').text(num)
+                if(dis == 'N'){
+                    $('.popup-list ul').animate({
+                        left:'-400px'
+                    },100,function(){
+                        $('.popup-list ul').append($('.popup-list ul li:first'))
+                        $('.popup-list ul').css('left','0px')
+                    })
+                }else{
+                    $('.popup-list ul').prepend($('.popup-list ul li:last'))
+                    $('.popup-list ul').css('left','-400px')
+                    $('.popup-list ul').animate({
+                        left:'0px'
+                    },100)
+                }
+            }
+
+            $('.p-stop').on('click',function(e){
+                e.preventDefault
+                if($(this).hasClass('pause')==true){
+                    clearInterval(st)
+                    $(this).removeClass('pause');
+                    $(this).addClass('play')
+                }else{
+                    st = setInterval(set,1000)
+                    $(this).removeClass('play')
+                    $(this).addClass('pause')
+                }
+            })
+            let st = setInterval(set,1000)
+
+            function set(){
+                $('.p-next').trigger('click')
+            }
+
+            // select
+            $('.anchor-btn').on('click',function(){
+                $(this).toggleClass('on')
+                $('.select').fadeToggle();
+            })
+        })
+
+    </script>
+</head>
+<body>
+    <div id="skip-menu">
+        <a href="#container">본문바로가기</a>
+        <a href="#gnb">주메뉴바로가기</a>
+    </div>
+
+    <div class="wrapper">
+        <!-- header s -->
+        <header class="header-wrap">
+            <div class="header clearfix">
+                    <h1>RAILWAY</h1>
+
+                <div class="gnb-wrap clearfix" id="gnb">
+                    
+                    <h2 class="skip">주메뉴</h2>
+                    
+                    <ul class="nav-menu clearfix">
+                        <li>
+                            <a href="sub1.html" class="deth-1">관람정보</a>
+
+                            <ul class="subMenu">
+                                <li><a href="sub1.html">관람안내</a></li>
+                                <li><a href="#none">자료기증안내</a></li>
+                                <li><a href="#none">찾아오시는길</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="sub2.html" class="deth-1">전시안내</a>
+
+                            <ul class="subMenu">
+                                <li><a href="sub2.html">시설안내</a></li>
+                                <li><a href="#none">1층전시</a></li>
+                                <li><a href="#none">2층전시</a></li>
+                                <li><a href="#none">야외전시</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="sub3.html" class="deth-1">온라인박물관</a>
+
+                            <ul class="subMenu">
+                                <li><a href="#none">온라인교육</a></li>
+                                <li><a href="#none">온라인체험</a></li>
+                                <li><a href="#none">기차소개</a></li>
+                                <li><a href="#none">박물관자료</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#none" class="deth-1">체험안내</a>
+
+                            <ul class="subMenu">
+                                <li><a href="#none">디오라마/전시해설</a></li>
+                                <li><a href="#none">열차운전체험실</a></li>
+                                <li><a href="#none">SL관광열차</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#none" class="deth-1">참여마당</a>
+
+                            <ul class="subMenu">
+                                <li><a href="#none">행사안내</a></li>
+                                <li><a href="#none">행사 예약확인</a></li>
+                                <li><a href="#none">묻고답하기</a></li>
+                                <li><a href="#none">관람후기</a></li>
+                                <li><a href="#none">철도문화해설사</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#none" class="deth-1">박물관소개</a>
+
+                            <ul class="subMenu">
+                                <li><a href="#none">인사말</a></li>
+                                <li><a href="#none">박물관연혁</a></li>
+                                <li><a href="sub3.html">공지사항</a></li>
+                                <li><a href="#none">언론홍보</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="utill clearfix">
+                    <ul class="utill-link clearfix">
+                        <li>
+                            <a href="#none" class="lang-select">
+                                KOR
+                                <i></i>
+                            </a>
+                            <ul class="link-list">
+                                <li>
+                                    <a href="#none">ENG</a>
+                                </li>
+                                <li>
+                                    <a href="#none">CHN</a>
+                                </li>
+                                <li>
+                                    <a href="#none">JPN</a>
+                                </li>
+                            </ul>
+                        </li>
+                
+                        <li class="search-wrap">
+                            <a href="#none" class="search-icon">
+                                <span>검색</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#none" class="site-map">
+                                <span class="skip">사이트 바로가기</span>
+                                <span class="finger-menu">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                
+                    <div class="search-tab">
+                        <div class="search-form">
+                            <form action="#" method="post" name="header-search" class="header-search">
+                                <input type="search" class="search-text" name="search-text" placeholder="검색어를 입력해주세요">
+                                <button class="search-btn"><a href="#none">검색</a></button>
+                            </form>
+                            <button class="search-close"><a href="#none">검색창 닫기</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="all-menu clearfix" id="gnb">
+            
+            <div class="bg"></div>
+
+            <div class="total">
+                <a href="#none" class="close-menu-btn"><span></span></a>
+                <ul class="total-gnb clearfix">
+                    <li>
+                        <a href="#none" class="deth-3">관람정보</a>
+
+                        <ul class="deth-4">
+                            <li><a href="#none">관람안내</a></li>
+                            <li><a href="#none">자료기증안내</a></li>
+                            <li><a href="#none">찾아오시는길</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#none" class="deth-3">전시안내</a>
+
+                        <ul class="deth-4">
+                            <li><a href="#none">시설안내</a></li>
+                            <li><a href="#none">1층전시</a></li>
+                            <li><a href="#none">2층전시</a></li>
+                            <li><a href="#none">야외전시</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#none" class="deth-3">온라인박물관</a>
+
+                        <ul class="deth-4">
+                            <li><a href="#none">온라인교육</a></li>
+                            <li><a href="#none">온라인체험</a></li>
+                            <li><a href="#none">기차소개</a></li>
+                            <li><a href="#none">박물관자료</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#none" class="deth-3">체험안내</a>
+
+                        <ul class="deth-4">
+                            <li><a href="#none">디오라마/전시해설</a></li>
+                            <li><a href="#none">열차운전체험실</a></li>
+                            <li><a href="#none">SL관광열차</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#none" class="deth-3">참여마당</a>
+
+                        <ul class="deth-4">
+                            <li><a href="#none">행사안내</a></li>
+                            <li><a href="#none">행사 예약확인</a></li>
+                            <li><a href="#none">묻고답하기</a></li>
+                            <li><a href="#none">관람후기</a></li>
+                            <li><a href="#none">철도문화해설사</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#none" class="deth-3">박물관소개</a>
+
+                        <ul class="deth-4">
+                            <li><a href="#none">인사말</a></li>
+                            <li><a href="#none">박물관연혁</a></li>
+                            <li><a href="#none">공지사항</a></li>
+                            <li><a href="#none">언론홍보</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- section s -->
+        <section class="container">
+            <!-- visual s -->
+            <section class="visual-wrap">
+                <h2 class="skip">메인베너</h2>
+
+                <div class="visual-group">
+                    <div class="visual-list">
+                        <ul class="visualImg">
+                            <li><img src="images/banner1.png" alt=""></li>
+                            <li><img src="images/banner2.png" alt=""></li>
+                            <li><img src="images/banner3.png" alt=""></li>
+                        </ul>
+
+                        <div class="visual-control">
+                            <a href="#none" class="vPrev btn">
+                                <span>이전보기</span>
+                            </a>
+                            
+                            <a href="#none" class="vNext btn">
+                                <span>다음보기</span>
+                            </a>
+                        </div>
+    
+                        <ul class="visual-btn">
+                            <li><a href="#none" class="on">1</a></li>
+                            <li><a href="#none">2</a></li>
+                            <li><a href="#none">3</a></li>
+                        </ul>
+                        <div class="banner-btn">
+                            <!-- <a href="#" class="ir-kiost v-Play play"><span>시작</span></a> -->
+                            <a href="#" class="ir-kiost v-stop pause"><span>정지</span></a>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </section>
+            <!-- visual e -->
+
+            <!-- content s -->
+            <section class="content-wrap">
+                <!-- notice- s -->
+                <article class="notice-wrap clearfix">
+                    <h3 class="tit"><span>박물관</span> 소식</h3>
+    
+                    <ul class="notice-list clearfix">
+                        <li class="n-tit">
+                            <a href="#none" class="on">
+                                공지사항
+                            </a>
+    
+                            <div class="n-content on">
+                                <ul class="news clearfix">
+                                    <li>
+                                        <a href="#none">
+                                            <span  class="news-title"> 2023 철도 축제 안내</span>
+                                            <span class="text">코레일 철도박물관은 어린이날을 맞아 '의왕철도축제'와 연계한 다채로운 행사를 마련합니다.</span>
+                                            <span  class="date">2023.05.03</span>
+                                        </a>         
+                                    </li>
+                                    <li>
+                                        <a href="#none">
+                                            <span  class="news-title">
+                                                '커피로 그린 철도' 특별전 안내(4.21~6.30)
+                                            </span>
+                                        <span class="text">철도박물관 특별전시 '커피로 그린 철도'를 소개합니다.</span>
+                                            <span  class="date">2023.04.15</span>
+                                        </a>   
+                                    </li>
+                                    <li>
+                                        <a href="#none">
+                                            <span  class="news-title">
+                                                철도박물관 야외전시차량 도장 공사 알림
+                                            </span>
+                                            <span class="text">철도박물관에서는 야외전시차량 중 일부차량의 외부 도장공사를 시행함을 알려드립니다.</span>
+                                            <span  class="date">2022.10.29</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <span class="not-more-btn">
+                                    <a href="#none"></a>
+                                </span>
+                            </div>
+                        </li>
+    
+                        <li  class="n-tit">
+                            <a href="#none">
+                                행사안내
+                            </a>
+                            <div class="n-content">
+                                <ul class="news">
+                                    <li>
+                                        <a href="#none">
+                                            <span  class="news-title"> 2023 철도 축제 안내</span>
+                                            <span class="text">코레일 철도박물관은 어린이날을 맞아 '의왕철도축제'와 연계한 다채로운 행사를 마련합니다.</span>
+                                            <span  class="date">2023.05.10</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#none">
+                                            <span  class="news-title">
+                                                '커피로 그린 철도' 특별전 안내(4.21~6.30)
+                                            </span>
+                                            <span class="text">철도박물관 특별전시 '커피로 그린 철도'를 소개합니다.</span>
+                                            <span  class="date">2023.04.20</span>
+                                        </a>  
+                                    </li>
+                                    <li>
+                                        <a href="#none">
+                                            <span  class="news-title">
+                                                철도박물관 야외전시차량 도장 공사 알림
+                                            </span>
+                                            <span class="text">철도박물관에서는 야외전시차량 중 일부차량의 외부 도장공사를 시행함을 알려드립니다.</span>
+                                            <span  class="date">2022.10.30</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <span class="not-more-btn">
+                                    <a href="#none">공지사항 더보기</a>
+                                </span>
+                            </div>
+                        </li>
+    
+                        <li class="n-tit">
+                            <a href="#none">
+                                언론홍보
+                            </a>
+    
+                            <div class="n-content">
+                                <ul class="news">
+                                    <li>
+                                        <a href="#none">
+                                            <span  class="news-title"> 2023 철도 축제 안내</span>
+                                            <span class="text">코레일 철도박물관은 어린이날을 맞아 '의왕철도축제'와 연계한 다채로운 행사를 마련합니다.</span>
+                                            <span  class="date">2023.05.03</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#none">
+                                            <span  class="news-title">
+                                                '커피로 그린 철도' 특별전 안내(4.21~6.30)
+                                            </span>
+                                            <span class="text">철도박물관 특별전시 '커피로 그린 철도'를 소개합니다.</span>
+                                            <span  class="date">2023.04.15</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#none">
+                                            <span  class="news-title">
+                                                철도박물관 야외전시차량 도장 공사 알림
+                                            </span>
+                                            <span class="text">철도박물관에서는 야외전시차량 중 일부차량의 외부 도장공사를 시행함을 알려드립니다.</span>
+                                            <span  class="date">2022.10.29</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                                    <span class="not-more-btn">
+                                        <a href="#none">공지사항 더보기</a>
+                                    </span>
+                            </div>
+                        </li>
+                    </ul>
+                </article>
+
+                <!-- popup s -->
+                <article class="popup-wrap">
+                    <h3><span>소식알림창</span>입니다.</h3>
+                        <div class="popup-list">
+                            <ul>
+                                <li class="on">
+                                    <a href="#none" class="pop-img on">
+                                        <img src="images/popup-1.png" alt="수인선 협궤열차 우리 곁으로">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#none" class="pop-img on">
+                                        <img src="images/popup-2.png" alt="철도박물관 5월의 선물">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#none" class="pop-img on">
+                                        <img src="images/popup-3.png" alt="">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="popup-control">
+                            <span class="number"><span class="count">1</span>/3</span>
+                            <a href="#none" class="iarrow p-prev"><span>이전보기</span></a>
+                            <!-- <a href="#none" class="iarrow p-play"><span>재생</span></a> -->
+                            <a href="#none" class="iarrow p-stop pause"><span>정지</span></a>
+                            <a href="#none" class="iarrow p-next"><span>다음보기</span></a>
+                        </div>
+                </article>
+            </section>
+            <!-- content e -->
+
+            <!-- quick s -->
+            <section class="quick-wrap">
+                <div class="icon-box clearfix">
+                    <h3 class="quick-title">
+                        <span>사용자</span> 퀵메뉴
+                    </h3>
+                    <ul class="quick-list">
+                        <li>
+                            <a href="#none">
+                                <span class="ir-kiost icmlk1">
+                                    <em>전시안내</em>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#none">
+                                <span class="ir-kiost icmlk2">
+                                    <em>관람후기</em>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#none">
+                                <span class="ir-kiost icmlk3">
+                                    <em>관람안내</em>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#none">
+                                <span class="ir-kiost icmlk4">
+                                    <em>온라인전시</em>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#none">
+                                <span class="ir-kiost icmlk5">
+                                    <em>주변관광지</em>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#none">
+                                <span class="ir-kiost icmlk6">
+                                    <em>찾아오시는길</em>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <!-- quick e -->
+
+            <!-- event s -->
+            <section class="event-wrap">
+                <article class="expre-wrap clearfix">
+                    <h3 class="expre-title">체험&amp;이벤트</h3>
+                    <div class="expre-box">
+                        <a href="#none">
+                            <img src="images/steamloco.png" alt="">
+
+                            <div class="txt-box">
+                                <strong>증기기관 관광열차</strong>
+                                <p>증기기관차가 견인하는 객차에 탑승하여<br/>여행을 즐겨보아요.</p>
+                                <div class="t-content">
+                                    <em class="expre-txt">MORE</em>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="expre-box">
+                        <a href="#none">
+                            <img src="images/driving_exper.jpg" alt="">
+                            <div class="txt-box">
+                                <strong>열차운전체험</strong>
+                                <p>시뮬레이터를 통해 직접 기관사가 되어<br/>열차를 운전해 볼 수 있습니다</p>
+                                <div class="t-content">
+                                    <em class="expre-txt">MORE</em>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="expre-box">
+                        <a href="#none">
+                            <img src="images/train_model.png" alt="">
+
+                            <div class="txt-box">
+                                <strong>철도모형 디오라마</strong>
+                                <p>대한민국을 달리는 열차들을<br/>모형으로 만나볼 수 있습니다.</p>
+                                <div class="t-content">
+                                    <em class="expre-txt">MORE</em>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </article>
+            </section>
+            <!-- event e -->
+
+            <!-- sns s -->
+            <section class="sns-wrap">
+                <article class="sns-contents clearfix">
+                    <h3 class="sns-title">철도박물관 SNS</h3>
+                    <div class="sns-box">
+                        <a href="#none">
+                            <img src="images/mika3_161.png" alt="">
+
+                            <div class="sns-txt">
+                                <span>미카3형증기기관차</span>
+                            </div>
+                            <span class="ir-kiost icon1"></span>
+                        </a>
+                    </div>
+
+                    <div class="sns-box">
+                        <a href="#none">
+                            <img src="images/ktx_snachon_model.png" alt="">
+
+                            <div class="sns-txt">
+                                <span>자체개발<br/> KTX산천 철도모형</span>
+                            </div>
+                            <span class="ir-kiost icon2"></span>
+                        </a>
+                    </div>
+
+                    <div class="sns-box">
+                        <a href="#none">
+                            <img src="images/srt.png" alt="">
+
+                            <div class="sns-txt">
+                                <span>한국철도사진</span>
+                            </div>
+                            <span class="ir-kiost icon3"></span>
+                        </a>
+                    </div>
+                </article>
+                <div class="link-box">
+                    <a href="#none"><img src="images/facebook.png" alt="페이스북"></a>
+                    <a href="#none"><img src="images/instagram.png" alt="인스타그램"></a>
+                    <a href="#none"><img src="images/youtube.png" alt="유튜브"></a>
+                </div>
+            </section>
+            <!-- sns e -->
+        </section>
+
+        <footer class="footer">
+            <div class="footer-wrap">
+                <div class="footer-top clearfix">
+                    <ul class="footer-menu">
+                        <li><a href="#none">
+                            개인정보처리방침
+                        </a></li>
+                        <li><a href="#none">
+                            저작권정책
+                        </a></li>
+                        <li><a href="#none">
+                            찾아오시는길
+                        </a></li>
+                    </ul>
+
+                    <div class="footer-r-group clearfix">
+                        <div class="anchor-group">
+                            <a href="#none" class="anchor-btn">관련사이트<span>+</span></a>
+                            <ul class="select">
+                                <li><a href="#none">코레일 홈페이지</a></li>
+                                <li><a href="#none">키즈코레일(어린이 홈페이지)</a></li>
+                                <li><a href="#none">승차권예매(레츠코레일)</a></li>
+                                <li><a href="#none">물류정보</a></li>
+                                <li><a href="#none">코레일웹진</a></li>
+                            </ul>
+                        </div>
+                        <div class="sns-box">
+                            <a href="#none"><img src="images/facebook.png" alt="페이스북"></a>
+                            <a href="#none"><img src="images/instagram.png" alt="인스타그램"></a>
+                            <a href="#none"><img src="images/youtube.png" alt="유튜브"></a>
+                        </div>
+                    </div>
+                   
+                </div>
+
+                <div class="footer-bottom clearfix">
+                    <div class="footer-logo"><img src="images/footer_logo.png" alt="철도박물관"></div>
+                    <div class="text">
+                        <p class="add">
+                            한국철도공사 사업자등록번호:314-82-10024 본사:대전광역시 동구 중앙로 240<br/>
+                            철도박물관 : 경기도 의왕시 철도박물관로 142 Tel:031-461-3610 Fax:031-460-4322
+                        </p>
+                        <p class="copy">
+                            Copyright © KOREA RAILROAD. All Rights Reserved.
+                        </p>
+                    </div>
+                    
+                    <div class="wa-logo"><img src="images/wa-logo.png" alt="웹접근성품질로고"></div>
+                </div>
+            </div>
+            <div class="top-btn"><a href="#gnb"><img src="images/btn_top.png" alt="top"></a></div>
+        </footer>
+    </div>
+</body>
+</html>

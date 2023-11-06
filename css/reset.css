@@ -1,0 +1,53 @@
+@charset "utf-8";
+
+body, div, header, footer, aside, section, article, nav, h1, h2, h3,
+ul, li, em, form, input, button, strong, span, a, p, i img{
+    margin: 0;
+    padding: 0;
+}
+
+header, footer, aside, section, article, nav{
+    display: block;
+}
+
+ul,
+div{
+    list-style-type: none;
+}
+
+a:link,
+a:visited{
+    text-decoration: none;
+    color: #222;
+}
+a:hover,
+a:active,
+a:focus{
+    text-decoration: underline;
+    color: #222;
+}
+
+img{
+    border: none 0;
+}
+
+input,
+select,
+img,
+button{
+    vertical-align: middle;
+}
+
+body,
+input,
+button{
+    font-size: 14px;
+    font-family: 'Nanum Gothic','나눔고딕', sans-serif;
+    font-weight:400;
+    color: #222;
+}
+
+em,
+i{
+    font-style: normal;
+}

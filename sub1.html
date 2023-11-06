@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>박물관 관람안내 - 철도박물관</title>
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="박물관 관람안내 - 철도박물관">
+    <meta property="og:description" content="경기도 의왕시 월암동 위치, 시설 및 전시품 안내, 교육체험행사 예약 제공">
+    <meta property="og:image" content="http://www.railroadmuseum.co.kr/img/og_image.png">
+
+    <link rel="icon" href="korail.png">
+    <link rel="apple-tocuch-icon" href="korail.png">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/sub1_main.css">
+
+    <script>
+        $(document).ready(function(){
+            // gnb
+            var el = $('.gnb-wrap > ul > li > a');
+            el.on({
+                mouseenter:function(){
+                    $('.subMenu').stop().slideDown();
+                    $('.gnb-wrap').css('border-bottom','1px solid #d8d8d8')
+                },
+                mouseleave:function(){
+                    $('.subMenu').stop().slideUp();
+                    $('#gnb').css('border-bottom','1px solid none')
+                }
+            })
+
+            $('.subMenu').on({
+                mouseenter:function(){
+                    $('.subMenu').stop().slideDown();
+                },
+                mouseleave:function(){
+                    $('.subMenu').stop().slideUp();
+                }
+            })
+
+            // language
+            $('.lang-select').on('click',function(){
+                $(this).toggleClass('on')
+                $('.link-list').fadeToggle()
+            })
+            $('.link-list a').each(function(){
+                $(this).on('click',function(){
+                $(this).parents().find('.link-list').delay(800).fadeOut(500)
+                $(this).parents().find('.lang-select').removeClass('on')
+                })
+            })
+
+            // search
+            $('.search-icon').on('click',function(){
+                $('.search-tab').stop().slideDown();
+            })
+            $('.search-close').on('click',function(){
+                $(this).parents().find('.search-tab').slideUp();
+            })
+
+            // allMenu
+            $('.site-map').on('click',function(){
+                $('.all-menu').fadeIn('slow');
+            })
+            $('.close-menu-btn').on('click',function(){
+                $(this).parents().find('.all-menu').fadeOut();
+            })
+
+            // path-bar
+            $('.n1 > a').on('click',function(){
+                $(this).toggleClass('on')
+                $('.det2').fadeToggle()
+            })
+            $('.n2 > a').on('click',function(){
+                $(this).toggleClass('on')
+                $('.det3').fadeToggle()
+            })
+
+            // share
+            $('.share a').on('click',function(){
+                $(this).toggleClass('on')
+                $('.share-list').slideToggle()
+            })
+
+            // select
+            $('.anchor-btn').on('click',function(){
+                $(this).toggleClass('on')
+                $('.select').fadeToggle();
+            })
+        })
+    </script>
+
+</head>
+<body>
+    <div id="skip-menu">
+        <a href="#container">본문바로가기</a>
+        <a href="#gnb">주메뉴바로가기</a>
+    </div>
+
+    <div class="wrapper">
+
+        <header class="header-wrap">
+            <div class="header clearfix">
+                <a href="index.html"><h1>RAILWAY</h1></a>
+
+                <div class="gnb-wrap clearfix" id="gnb">
+                    
+                    <h2 class="skip">주메뉴</h2>
+                    
+                    <ul class="nav-menu clearfix">
+                        <li>
+                            <a href="sub1.html" class="deth-1">관람정보</a>
+
+                            <ul class="subMenu">
+                                <li><a href="sub1.html">관람안내</a></li>
+                                <li><a href="#none">자료기증안내</a></li>
+                                <li><a href="#none">찾아오시는길</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="sub2.html" class="deth-1">전시안내</a>
+
+                            <ul class="subMenu">
+                                <li><a href="sub2.html">시설안내</a></li>
+                                <li><a href="#none">1층전시</a></li>
+                                <li><a href="#none">2층전시</a></li>
+                                <li><a href="#none">야외전시</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="sub3.html" class="deth-1">온라인박물관</a>
+
+                            <ul class="subMenu">
+                                <li><a href="#none">온라인교육</a></li>
+                                <li><a href="#none">온라인체험</a></li>
+                                <li><a href="#none">기차소개</a></li>
+                                <li><a href="#none">박물관자료</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#none" class="deth-1">체험안내</a>
+
+                            <ul class="subMenu">
+                                <li><a href="#none">디오라마/전시해설</a></li>
+                                <li><a href="#none">열차운전체험실</a></li>
+                                <li><a href="#none">SL관광열차</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#none" class="deth-1">참여마당</a>
+
+                            <ul class="subMenu">
+                                <li><a href="#none">행사안내</a></li>
+                                <li><a href="#none">행사 예약확인</a></li>
+                                <li><a href="#none">묻고답하기</a></li>
+                                <li><a href="#none">관람후기</a></li>
+                                <li><a href="#none">철도문화해설사</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#none" class="deth-1">박물관소개</a>
+
+                            <ul class="subMenu">
+                                <li><a href="#none">인사말</a></li>
+                                <li><a href="#none">박물관연혁</a></li>
+                                <li><a href="sub3.html">공지사항</a></li>
+                                <li><a href="#none">언론홍보</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="utill clearfix">
+                    <ul class="utill-link clearfix">
+                        <li>
+                            <a href="#none" class="lang-select">
+                                KOR
+                                <i></i>
+                            </a>
+                            <ul class="link-list">
+                                <li>
+                                    <a href="#none">ENG</a>
+                                </li>
+                                <li>
+                                    <a href="#none">CHN</a>
+                                </li>
+                                <li>
+                                    <a href="#none">JPN</a>
+                                </li>
+                            </ul>
+                        </li>
+                
+                        <li class="search-wrap">
+                            <a href="#none" class="search-icon">
+                                <span>검색</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#none" class="site-map">
+                                <span class="skip">사이트 바로가기</span>
+                                <span class="finger-menu">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                
+                    <div class="search-tab">
+                        <div class="search-form">
+                            <form action="#" method="post" name="header-search" class="header-search">
+                                <input type="search" class="search-text" name="search-text" placeholder="검색어를 입력해주세요">
+                                <button class="search-btn"><a href="#none">검색</a></button>
+                            </form>
+                            <button class="search-close"><a href="#none">검색창 닫기</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="all-menu clearfix" id="gnb">
+            
+            <div class="bg"></div>
+
+            <div class="total">
+                <a href="#none" class="close-menu-btn"><span></span></a>
+                <ul class="total-gnb clearfix">
+                    <li>
+                        <a href="#none" class="deth-3">관람정보</a>
+
+                        <ul class="deth-4">
+                            <li><a href="#none">관람안내</a></li>
+                            <li><a href="#none">자료기증안내</a></li>
+                            <li><a href="#none">찾아오시는길</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#none" class="deth-3">전시안내</a>
+
+                        <ul class="deth-4">
+                            <li><a href="#none">시설안내</a></li>
+                            <li><a href="#none">1층전시</a></li>
+                            <li><a href="#none">2층전시</a></li>
+                            <li><a href="#none">야외전시</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#none" class="deth-3">온라인박물관</a>
+
+                        <ul class="deth-4">
+                            <li><a href="#none">온라인교육</a></li>
+                            <li><a href="#none">온라인체험</a></li>
+                            <li><a href="#none">기차소개</a></li>
+                            <li><a href="#none">박물관자료</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#none" class="deth-3">체험안내</a>
+
+                        <ul class="deth-4">
+                            <li><a href="#none">디오라마/전시해설</a></li>
+                            <li><a href="#none">열차운전체험실</a></li>
+                            <li><a href="#none">SL관광열차</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#none" class="deth-3">참여마당</a>
+
+                        <ul class="deth-4">
+                            <li><a href="#none">행사안내</a></li>
+                            <li><a href="#none">행사 예약확인</a></li>
+                            <li><a href="#none">묻고답하기</a></li>
+                            <li><a href="#none">관람후기</a></li>
+                            <li><a href="#none">철도문화해설사</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#none" class="deth-3">박물관소개</a>
+
+                        <ul class="deth-4">
+                            <li><a href="#none">인사말</a></li>
+                            <li><a href="#none">박물관연혁</a></li>
+                            <li><a href="#none">공지사항</a></li>
+                            <li><a href="#none">언론홍보</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <section class="container">
+
+            <article class="visual-wrap">
+                <div class="visual">
+                    <div class="visual_tit">
+                        <h3 class="big-title">관람정보</h3>
+                    </div>
+                </div>
+            </article>
+            <div class="path_bar_wrap">
+                <div class="path_bar clearfix">
+                    <ul class="path">
+                        <li class="home">
+                            <a href="index.html">HOME</a>
+                        </li>
+                        <li class="n1">
+                            <a href="#none" title="관람정보">
+                                <span>관람정보</span>
+                            </a>
+                            <ul class="det2">
+                                <li><a href="#none">관람정보</a></li>
+                                <li><a href="#none">전시안내</a></li>
+                                <li><a href="#none">온라인박물관</a></li>
+                                <li><a href="#none">체험안내</a></li>
+                                <li><a href="#none">박물관소개</a></li>
+                            </ul>
+                        </li>
+                        <li class="n2">
+                            <a href="#none">
+                                <span>관람안내</span>
+                            </a>
+                            <ul class="det3">
+                                <li><a href="#none">관람안내</a></li>
+                                <li><a href="#none">자료기증안내</a></li>
+                                <li><a href="#none">찾아오시는길</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <ul class="path-group">
+                        <li class="print">
+                            <a href="#none">프린트</a>
+                        </li>
+                        <li class="share">
+                            <a href="#none">공유</a>
+                            <ul class="share-list">
+                                <li><a href="#none"><img src="images/facebook.png" alt=""></a></li>
+                                <li><a href="#none"><img src="images/youtube.png" alt=""></a></li>
+                                <li><a href="#none"><img src="images/instagram.png" alt=""></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <article class="content-wrap">
+                <h3>관람안내</h3>
+                <div class="timeBox">
+                    <div class="visual">
+                        <a href="#none"><img src="images/time_box.png" alt=""></a>
+                    </div>
+                </div>
+
+                <div class="guide-info">
+                    <ul class="guide-list">
+                        <li class="closeDay">
+                            <span>
+                                <i class="fa-solid fa-calendar-days"></i>
+                                <span>휴관일</span>
+                            </span>
+                            <ul class="closeText">
+                                <li>- 매주 월요일(월요일이 공휴일인 경우에는 개관)</li>
+                                <li>- 공휴일 다음날(다음날이 주말인 경우에는 개관)</li>
+                                <li>- 1월 1일(신정)</li>
+                                <li>- 설 · 추석 연휴기간</li>
+                                <li>- 기타 박물관장이 지정한 날</li>
+                            </ul>
+                        </li>
+
+                        <li class="fee">
+                            <span>
+                                <i class="fa-solid fa-ticket"></i>
+                                <span>관람료</span>
+                            </span>
+                            <table>
+                                <colgroup>
+                                    <col width="196"/>
+                                    <col width="196"/>
+                                    <col width="196"/>
+                                </colgroup>
+
+                                <thead>
+                                    <tr>
+                                        <th>구분</th>
+                                        <th>개인</th>
+                                        <th>단체</th>
+                                        <th>무료입장</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">대인<br/>(19~64세)</th>
+                                        <td>2,000원</td>
+                                        <td>1,000원</td>
+                                        <td rowspan="5">*48개월 미만 유아<br/>(등본/가족관계증명서/아기수첩)<br/>*만65세 이상 노인<br/>(주민등록증/신분증)<br/>*장애인<br/>(복지카드 또는 장애인 증명)<br/>*국가유공자(본인)<br/>(국가유공자)<br/>*단체 인솔교사<br/>(20명당 1인)</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">어린이/청소년<br/>(4~18세)</th>
+                                        <td>1,000원</td>
+                                        <td>500원</td>
+                                    </tr>
+                                    <tr>
+                                        <th>경로<br/>65세이상<br/>유아 및 장애인</th>
+                                        <td colspan="2">무료<br/>(48개월 미만 유아/국가유공자/장애인/단체 인솔교사)</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </li>
+
+                        <li class="info">
+                            <span>
+                                <i class="fa-solid fa-info"></i>
+                                <span>관람객 유의사항</span>
+                            </span>
+                            <ul class="info-text">
+                                <li>- 박물관의 모든 구역은 금연구역입니다.</li>
+                                <li>- 전시실 입장 전 휴대전화는 전원을 꺼주시거나 진동으로 전환해 주십시오.</li>
+                                <li>- 플래시/삼각대 등을 이용한 촬영과 상업적 용도를 위한 촬영은 금지되어 있습니다.</li>
+                                <li>- 박물관의 모든 공간에서는 자전거, 킥보드, 인라인 스케이트 등을 이용할 수 없습니다.</li>
+                                <li>- 전시실 내 음식물 반입은 삼가바랍니다.</li>
+                                <li>- 안내견 이외의 애완동물의 출입은 금지되어 있습니다.</li>
+                                <li>- 전시물을 파손한 경우 이에 대한 책임을 지고 변상해야 합니다.</li>
+                            </ul>
+                        </li>
+
+                        <li class="infoDesk">
+                            <span>
+                                <i class="fa-solid fa-phone"></i>
+                                <span>관람문의</span>
+                            </span>
+                            <ul>
+                                <li>전화 : 031-461-3610</li>
+                                <li>팩스 : 031-460-4322</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+        </section>
+
+        <footer class="footer">
+            <div class="footer-wrap">
+                <div class="footer-top clearfix">
+                    <ul class="footer-menu">
+                        <li><a href="#none">
+                            개인정보처리방침
+                        </a></li>
+                        <li><a href="#none">
+                            저작권정책
+                        </a></li>
+                        <li><a href="#none">
+                            찾아오시는길
+                        </a></li>
+                    </ul>
+
+                    <div class="footer-r-group clearfix">
+                        <div class="anchor-group">
+                            <a href="#none" class="anchor-btn">관련사이트<span>+</span></a>
+                            <ul class="select">
+                                <li><a href="#none">코레일 홈페이지</a></li>
+                                <li><a href="#none">키즈코레일(어린이 홈페이지)</a></li>
+                                <li><a href="#none">승차권예매(레츠코레일)</a></li>
+                                <li><a href="#none">물류정보</a></li>
+                                <li><a href="#none">코레일웹진</a></li>
+                            </ul>
+                        </div>
+                        <div class="sns-box">
+                            <a href="#none"><img src="images/facebook.png" alt="페이스북"></a>
+                            <a href="#none"><img src="images/instagram.png" alt="인스타그램"></a>
+                            <a href="#none"><img src="images/youtube.png" alt="유튜브"></a>
+                        </div>
+                    </div>
+                   
+                </div>
+
+                <div class="footer-bottom clearfix">
+                    <div class="footer-logo"><img src="images/footer_logo.png" alt="철도박물관"></div>
+                    <div class="text">
+                        <p class="add">
+                            한국철도공사 사업자등록번호:314-82-10024 본사:대전광역시 동구 중앙로 240<br/>
+                            철도박물관 : 경기도 의왕시 철도박물관로 142 Tel:031-461-3610 Fax:031-460-4322
+                        </p>
+                        <p class="copy">
+                            Copyright © KOREA RAILROAD. All Rights Reserved.
+                        </p>
+                    </div>
+                    
+                    <div class="wa-logo"><img src="images/wa-logo.png" alt="웹접근성품질로고"></div>
+                </div>
+            </div>
+            <!-- <div class="top-btn"><a href="#gnb"><img src="images/btn_top.png" alt="top"></a></div> -->
+        </footer>
+    </div>
+</body>
+</html>

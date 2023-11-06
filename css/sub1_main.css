@@ -1,0 +1,251 @@
+@charset "UTF-8";
+
+.container{
+    width: 100%;
+    position: relative;
+}
+
+.visual-wrap{
+    position: relative;
+    width: 100%;
+}
+.visual{
+    position: relative;
+    top: -180px;
+    text-align: center;
+}
+.visual_tit{
+    width: 100%;
+    height: 180px;
+    position: absolute;
+    background: url(../images/station.jpg) no-repeat 50% 50%;
+    background-size: cover;
+}
+.big-title{
+    z-index: 99;
+    margin-top: 60px;
+    font-size: 40px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.path_bar_wrap{
+    position: relative;
+    margin-top: 180px;
+    height: 53px;
+    background-color: #d9d9d9;
+    border-bottom: 1px solid #f8f8f8;
+}
+
+.path_bar{
+    width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.path_bar .path-list > li{
+    float: left;
+    margin-right: 20px;
+}
+
+.path_bar_wrap .path .home{
+    display: block;
+    width: 50px;
+    background: url(../images/home-icon.png) no-repeat center 50%;
+    text-indent: -999em;
+    line-height: 55px;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+    cursor: pointer;
+}
+.path_bar_wrap .path > li{
+    position: relative;
+    height: 100%;
+    float: left;
+}
+.path_bar_wrap .path .n1,
+.path_bar_wrap .path .n2{
+    position: relative;
+    display: inline-block;
+    min-width: 160px;
+    border-right: 1px solid #eee;
+}
+.path_bar_wrap .path .n1 a,
+.path_bar_wrap .path .n2 a{
+    position: relative;
+    display: block;
+    line-height: 55px;
+    padding: 0 40px 0 20px;
+    font-size: 15px;
+    font-weight: 600;
+}
+.path_bar_wrap .path .n1 > a:after,
+.path_bar_wrap .path .n2 > a:after{
+    content: '';
+    position: absolute;
+    display: block;
+    top: 40%;
+    right: 21px;
+    width: 12px;
+    height: 7px;
+    background: url(../images/mark_select.png) no-repeat;
+    background-position: 0 0;
+    /* transition: all 4s; */
+}
+.path_bar_wrap .path .n1 .det2,
+.path_bar_wrap .path .n2 .det3{
+    position: absolute;
+    top: 53px;
+    left: -1px;
+    width: 100%;
+    z-index: 99;
+    background-color: #fff;
+    border: 1px solid #eee;
+    display: none;
+}
+.path_bar_wrap .path .n1 .det2 li:hover,
+.path_bar_wrap .path .n2 .det3 li:hover{
+    background-color: #bb6d14;
+}
+.path_bar_wrap .path .n1 .det2 li a:hover,
+.path_bar_wrap .path .n2 .det3 li a:hover{
+    color: #fff;
+}
+.path-group{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.path-group > li{
+    float: left;
+    border-left: 1px solid #eee;
+    border-right: 1px solid #eee;
+}
+.path-group .print{
+    width: 55px;
+    display: block;
+    line-height: 55px;
+    text-indent: -999em;
+    background: url(../images/ico_print.png) no-repeat 50% 50%;
+    border-right: none;
+    cursor: pointer;
+}
+.path-group .share{
+    position: relative;
+    width: 55px;
+}
+.path-group .share > a{
+    position: relative;
+    display: block;
+    line-height: 55px;
+    text-indent: -999em;
+    background: url(../images/ico_share.png) no-repeat 50% 50%;
+}
+
+.path-group .share-list{
+    position: absolute;
+    top: 53px;
+    left: -1px;
+    width: 100%;
+    z-index: 99;
+    line-height: 55px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-top: none;
+    display: none;
+}
+.path-group .share-list li{
+    display: block;
+    padding-left: 25%;
+    border-bottom: 1px solid #d9d9d9;
+}
+.path-group .share-list li a{
+    text-indent: -999em;
+}
+
+.content-wrap{
+    position: relative;
+    top: 100px;
+    width: 1200px;
+    margin: 0 auto;
+}
+
+.content-wrap h3{
+    font-size: 50px;
+    margin-bottom: 50px;
+    margin-right: 380px;
+    text-align: center;
+}
+
+.timeBox{
+    position: relative;
+    width: 1200px;
+    height: 550px;
+    border-top: 2px solid #3692c7;
+    border-bottom: 2px solid #3692c7;
+}
+.timeBox .visual{
+    top: 100px;
+}
+
+.guide-info{
+    margin-top: 80px;
+}
+
+.guide-list .closeDay{
+    position: relative;
+    width: 1200px;
+    height: 320px;
+    margin-top: 80px;
+    border-bottom: 2px solid #3692c7;
+}
+.guide-list .closeDay span{
+    font-size: 30px;
+}
+.closeText,
+.info-text{
+    position: absolute;
+    top: 0;
+    margin-left: 400px;
+    line-height: 1.6;
+    font-size: 18px;
+    font-weight: 400;
+}
+.guide-list .fee,
+.info{
+    position: relative;
+    width: 1200px;
+    height: 380px;
+    margin-top: 140px;
+    border-bottom: 2px solid #3692c7;
+}
+.guide-list .fee span,
+.info span,
+.infoDesk span{
+    font-size: 30px;
+}
+.guide-list .fee table{
+    position: absolute;
+    top: 0;
+    margin-left: 250px;
+}
+.guide-list .fee table, th, td{
+    padding: 10px;
+    border: 1px solid #222;
+}
+.infoDesk{
+    position: relative;
+    width: 1200px;
+    height: 280px;
+    margin-top: 40px;
+}
+.infoDesk ul{
+    position: absolute;
+    top: 0;
+    margin-left: 400px;
+    line-height: 1.6;
+    font-size: 18px;
+    font-weight: 400;
+}
